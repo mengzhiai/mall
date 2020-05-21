@@ -1,18 +1,28 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-21 22:06:59
+ * @LastEditTime: 2020-05-21 22:37:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \mall\src\views\Home.vue
+--> 
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div class="home">
+  <header-compontent></header-compontent>
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import headerCompontent from '@/components/common/Header'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    headerCompontent
+  },
+  data() {
+    return {
+
+    }
   }
 }
 </script>
