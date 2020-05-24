@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-05-21 22:12:50
+ * @LastEditTime: 2020-05-24 17:19:22
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \mall\vue.config.js
+ */ 
 const path = require("path"); //引入path模块
 function resolve(dir) {
   return path.join(__dirname, dir); //path.join(__dirname)设置绝对路径
@@ -36,9 +44,8 @@ module.exports = {
       .set("@", resolve("./src"))
       .set("components", resolve("./src/components"));
     //set第一个参数：设置的别名，第二个参数：设置的路径
-  }
-
-  /* devServer: {
+  },
+  devServer: {
       // overlay: {
       //   warnings: true,
       //   errors: true
@@ -50,7 +57,7 @@ module.exports = {
       hotOnly: false,
       proxy: {
           '/api': {
-              target: "http://localhost:6000",
+              target: "http://localhost:3000",
               changeOrigin: true,
               ws: true, // proxy websockets
               pathRewrite: { //重写路径
@@ -58,5 +65,5 @@ module.exports = {
               }
           }
       }
-  } */
+  }
 };

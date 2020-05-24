@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:20:45
- * @LastEditTime: 2020-05-21 23:28:15
+ * @LastEditTime: 2020-05-24 19:47:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\components\common\Header.vue
@@ -97,6 +97,17 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      this.axios.get('/api/users').then(res => {
+        console.log(res.data.data);
+        // this.navList = res.data.data;
+      })
+    }
+  }
 };
 </script>
 
@@ -108,6 +119,7 @@ export default {
 
 .top-list {
   font-size: 12px;
+
   ul {
     li {
       margin-right: 15px;
@@ -122,12 +134,14 @@ export default {
   }
 }
 
-.nav-list{
+.nav-list {
   margin: 20px auto;
-  .menu-list{
+
+  .menu-list {
     margin-left: 100px;
   }
-  li{
+
+  li {
     margin-right: 20px;
     line-height: 53px;
     font-size: 16px;
