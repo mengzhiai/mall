@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:20:45
- * @LastEditTime: 2020-05-24 19:47:38
+ * @LastEditTime: 2020-06-07 02:53:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\components\common\Header.vue
@@ -102,10 +102,10 @@ export default {
   },
   methods: {
     init() {
-      this.axios.get('/api/users').then(res => {
+      /* this.axios.get('/api/users').then(res => {
         console.log(res.data.data);
         // this.navList = res.data.data;
-      })
+      }) */
     }
   }
 };

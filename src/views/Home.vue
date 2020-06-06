@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:06:59
- * @LastEditTime: 2020-05-21 22:37:53
+ * @LastEditTime: 2020-06-07 02:07:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\views\Home.vue
@@ -22,6 +22,16 @@ export default {
   data() {
     return {
 
+    }
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      this.axios.get('/api').then(res => {
+        
+      })
     }
   }
 }
