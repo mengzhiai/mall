@@ -1,21 +1,24 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:20:45
- * @LastEditTime: 2020-06-07 02:53:58
+ * @LastEditTime: 2020-06-07 16:55:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\components\common\Header.vue
 -->
 <template>
 <div class="header">
-  <div class="content-box top-list">
-    <div class="flex-between link">
+  <div class="content-box top-list flex-between">
+    <div class="link">
       <ul class="flex">
         <li v-for="(item, i) in topMenuList" :key="i">{{ item.name }}</li>
       </ul>
     </div>
-    <div class="login-message"></div>
-    <div></div>
+    <div class="login-message">
+      <ul class="flex">
+        <li v-for="item in loginList" :key="item.id" @click="loginFun(item.id)">{{item.name}}</li>
+      </ul>
+    </div>
   </div>
   <div class="nav-list content-box flex">
     <div class="logo">
@@ -67,6 +70,19 @@ export default {
           name: "协议规则",
         },
       ],
+      loginList: [{
+          id: '1',
+          name: '登录'
+        },
+        {
+          id: '2',
+          name: '注册'
+        },
+        {
+          id: '3',
+          name: '消息通知'
+        }
+      ],
       navList: [{
           name: '小米手机'
         },
@@ -106,6 +122,11 @@ export default {
         console.log(res.data.data);
         // this.navList = res.data.data;
       }) */
+    },
+    loginFun(id){
+      if(id === '1'){
+        this.$router.push('/login');
+      }
     }
   }
 };

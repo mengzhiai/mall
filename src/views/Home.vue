@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:06:59
- * @LastEditTime: 2020-06-07 02:07:40
+ * @LastEditTime: 2020-06-07 18:22:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\views\Home.vue
@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted() {
-    this.init();
+    // this.init();
   },
   methods: {
     init() {

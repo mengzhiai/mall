@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-06-07 00:21:25
- * @LastEditTime: 2020-06-07 01:36:47
+ * @LastEditTime: 2020-06-07 18:04:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\server\conf\db.js
@@ -24,7 +24,7 @@ module.exports = {
       port: "3306",
       user: "root",
       password: "458677",
-      database: "xm"
+      database: "mall"
     });
     connection.connect(function (err) {
       if (err) {
@@ -40,7 +40,8 @@ module.exports = {
         throw err;
       }
       //将查询出来的数据返回给回调函数
-      callback && callback(JSON.parse(JSON.stringify(results)), JSON.parse(JSON.stringify(fileds)));
+      // callback && callback(JSON.parse(JSON.stringify(results)), JSON.parse(JSON.stringify(fileds)));
+      callback(err,results,fileds)
 
       //停止链接数据库
       connection.end(function (err) {
