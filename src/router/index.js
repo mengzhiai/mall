@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-05-21 22:06:59
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-06-07 17:05:47
+ * @LastEditTime: 2020-06-08 00:41:25
  * @FilePath: \mall\src\router\index.js
  * @Description:
  */
@@ -23,8 +23,13 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
-    // redirect: "/",
+    redirect: "/homePage",
     children: [
+      {
+        path: "/homePage",
+        component: () =>
+          import("../views/homePage/homePage.vue"),
+      },
     ],
   },
 ];

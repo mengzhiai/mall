@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-07 16:57:10
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-06-07 18:17:17
+ * @LastEditTime: 2020-06-08 00:10:48
  * @FilePath: \mall\src\views\login\login.vue
  * @Description: 
 --> 
@@ -156,8 +156,8 @@ export default {
                 this.$message.success(res.data.message);
                 this.$router.push('/');
                 //把登录信息存到localStorage中
-                localStorage.setItem('user', res.data.data.loginPerson)
-                localStorage.setItem('loginStatus', 1)
+                sessionStorage.setItem('userName', res.data.data.userName)
+                sessionStorage.setItem('userId', res.data.data.id)
               } else {
                 this.$message.warning(res.data.message);
                 /* this.form.userName = "";

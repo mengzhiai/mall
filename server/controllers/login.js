@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-07 17:15:31
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-06-07 18:33:19
+ * @LastEditTime: 2020-06-08 00:09:27
  * @FilePath: \mall\server\controllers\login.js
  * @Description: login
  */
@@ -33,8 +33,13 @@ router.post("/login", (req, res, next) => {
       let checkPwd = result[0].password;
       if (checkPwd === query.password) {
         // json(res, result, err, "select");
+        console.log(result);
         res.json({
           status: 1,
+          data: {
+            userName: result[0].userName,
+            id: result[0].id
+          },
           message: '登录成功'
         })
       }else{

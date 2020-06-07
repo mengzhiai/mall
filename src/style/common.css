@@ -118,4 +118,16 @@ h6 {
   width: 1200px;
   margin: 0 auto;
 }
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
 /*# sourceMappingURL=common.css.map */

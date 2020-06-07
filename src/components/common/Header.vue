@@ -1,35 +1,63 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:20:45
- * @LastEditTime: 2020-06-07 16:55:02
+ * @LastEditTime: 2020-06-08 00:44:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\components\common\Header.vue
 -->
 <template>
 <div class="header">
-  <div class="content-box top-list flex-between">
-    <div class="link">
-      <ul class="flex">
-        <li v-for="(item, i) in topMenuList" :key="i">{{ item.name }}</li>
-      </ul>
-    </div>
-    <div class="login-message">
-      <ul class="flex">
-        <li v-for="item in loginList" :key="item.id" @click="loginFun(item.id)">{{item.name}}</li>
-      </ul>
+  <div class="top-list">
+    <div class="content-box flex-between">
+      <div class="link">
+        <ul class="flex">
+          <li v-for="(item, i) in topMenuList" :key="i">{{ item.name }}</li>
+        </ul>
+      </div>
+      <div class="login-message">
+        <ul class="flex" v-if="loginPerson==''">
+          <li v-for="item in loginList" :key="item.id" @click="loginFun(item.id)">{{item.name}}</li>
+        </ul>
+        <ul class="flex" v-if="loginPerson!==''">
+          <li>
+            <el-dropdown @command="handleCommand">
+              <span class="el-dropdown-link">
+                {{loginPerson}}
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">个人中心</el-dropdown-item>
+                <el-dropdown-item command="b">评价晒单</el-dropdown-item>
+                <el-dropdown-item command="c">我的喜欢</el-dropdown-item>
+                <el-dropdown-item command="d">小米账户</el-dropdown-item>
+                <el-dropdown-item command="e">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </li>
+          <li>消息通知</li>
+          <li>我的订单</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="nav-list content-box flex">
-    <div class="logo">
-      <a href="/">
-        <img src="@/assets/logo.png" alt />
-      </a>
+  <div class="nav-list content-box flex-between">
+    <div class="flex">
+      <div class="logo">
+        <a href="/">
+          <img src="@/assets/logo.png" alt />
+        </a>
+      </div>
+      <div class="menu-list">
+        <ul class="flex">
+          <li v-for="(item, i) in navList" :key="i">{{item.name}}</li>
+        </ul>
+      </div>
     </div>
-    <div class="menu-list">
-      <ul class="flex">
-        <li v-for="(item, i) in navList" :key="i">{{item.name}}</li>
-      </ul>
+    <div class="search align-right">
+      <el-input placeholder="请输入搜索内容" size="small">
+        <el-button class="el-icon-search" slot="append"></el-button>
+      </el-input>
     </div>
   </div>
 </div>
@@ -83,6 +111,7 @@ export default {
           name: '消息通知'
         }
       ],
+
       navList: [{
           name: '小米手机'
         },
@@ -110,7 +139,8 @@ export default {
         {
           name: '社区'
         }
-      ]
+      ],
+      loginPerson: ''
     };
   },
   mounted() {
@@ -122,10 +152,21 @@ export default {
         console.log(res.data.data);
         // this.navList = res.data.data;
       }) */
+      this.loginPerson = sessionStorage.getItem('userName');
+      /* if(this.loginPerson !== ''){
+
+      } */
     },
-    loginFun(id){
-      if(id === '1'){
+    loginFun(id) {
+      if (id === '1') {
         this.$router.push('/login');
+      }
+    },
+
+    handleCommand(val) {
+      if (val === 'e') {
+        this.loginPerson = '';
+        this.$router.push('/login')
       }
     }
   }
@@ -133,13 +174,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  height: 40px;
-  background-color: #333;
-}
-
 .top-list {
   font-size: 12px;
+  height: 40px;
+  background-color: #333;
 
   ul {
     li {
@@ -163,10 +201,22 @@ export default {
   }
 
   li {
-    margin-right: 20px;
+    margin-right: 30px;
     line-height: 53px;
     font-size: 16px;
     cursor: pointer;
+
+    &:hover {
+      color: #ff6700;
+    }
   }
+
+  .search {
+    line-height: 53px;
+  }
+}
+
+.el-dropdown-link {
+  color: #b0b0b0;
 }
 </style>
