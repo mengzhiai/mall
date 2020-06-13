@@ -41,6 +41,7 @@ td {
   font-family: "Microsoft Yahei", "微软雅黑", arial, "\5b8b\4f53";
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -91,27 +92,22 @@ h6 {
 }
 
 .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .flex-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .flex-between {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .content-box {
@@ -130,4 +126,3 @@ h6 {
 .align-right {
   text-align: right;
 }
-/*# sourceMappingURL=common.css.map */

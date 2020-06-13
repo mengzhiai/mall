@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-05-21 22:12:50
- * @LastEditTime: 2020-05-24 17:19:22
- * @LastEditors: your name
+ * @LastEditTime: 2020-06-13 11:59:35
+ * @LastEditors: jun
  * @Description: In User Settings Edit
  * @FilePath: \mall\vue.config.js
  */ 

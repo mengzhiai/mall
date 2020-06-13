@@ -1,8 +1,8 @@
 /*
  * @Author: jun
  * @Date: 2020-06-04 22:47:18
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-06-07 17:15:50
+ * @LastEditors: jun
+ * @LastEditTime: 2020-06-14 00:50:38
  * @FilePath: \mall\server\routes\index.js
  * @Description: 
  */ 
@@ -12,7 +12,7 @@ let indexRouter = require('../controllers/index');
 let lgoinRouter = require('../controllers/login');
 
 
-router.use('/', indexRouter);
+router.use('/product', indexRouter);
 router.use('/login', lgoinRouter);
 
 

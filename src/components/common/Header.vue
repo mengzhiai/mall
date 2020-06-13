@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-21 22:20:45
- * @LastEditTime: 2020-06-08 00:44:20
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-06-13 12:10:58
+ * @LastEditors: jun
  * @Description: In User Settings Edit
  * @FilePath: \mall\src\components\common\Header.vue
 -->
@@ -16,10 +16,10 @@
         </ul>
       </div>
       <div class="login-message">
-        <ul class="flex" v-if="loginPerson==''">
+        <ul class="flex" v-if="loginStatus===true">
           <li v-for="item in loginList" :key="item.id" @click="loginFun(item.id)">{{item.name}}</li>
         </ul>
-        <ul class="flex" v-if="loginPerson!==''">
+        <ul class="flex" v-if="loginStatus===false">
           <li>
             <el-dropdown @command="handleCommand">
               <span class="el-dropdown-link">
@@ -140,6 +140,7 @@ export default {
           name: '社区'
         }
       ],
+      loginStatus: true,
       loginPerson: ''
     };
   },
@@ -148,14 +149,11 @@ export default {
   },
   methods: {
     init() {
-      /* this.axios.get('/api/users').then(res => {
-        console.log(res.data.data);
-        // this.navList = res.data.data;
-      }) */
-      this.loginPerson = sessionStorage.getItem('userName');
-      /* if(this.loginPerson !== ''){
-
-      } */
+      let loginStatus = sessionStorage.getItem('userName');
+      if (loginStatus !== null && loginStatus !== undefined) {
+        this.loginStatus = false;
+        this.loginPerson = loginStatus;
+      }
     },
     loginFun(id) {
       if (id === '1') {

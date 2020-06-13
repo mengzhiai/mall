@@ -1,8 +1,8 @@
 <!--
  * @Author: jun
  * @Date: 2020-06-07 16:57:10
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-06-08 00:10:48
+ * @LastEditors: jun
+ * @LastEditTime: 2020-06-09 15:51:44
  * @FilePath: \mall\src\views\login\login.vue
  * @Description: 
 --> 

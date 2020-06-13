@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-06-07 00:21:25
- * @LastEditTime: 2020-06-07 18:04:27
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-06-14 01:15:57
+ * @LastEditors: jun
  * @Description: In User Settings Edit
  * @FilePath: \mall\server\conf\db.js
  */ 
@@ -20,6 +20,11 @@ module.exports = {
   query: function (sql, params, callback) {
     //每次使用的时候需要创建链接，数据操作完成之后要关闭连接
     const connection = mysql.createConnection({
+      /* host: "39.97.253.71",
+      port: "3306",
+      user: "jun",
+      password: "458677565Jun~",
+      database: "mall" */
       host: "localhost",
       port: "3306",
       user: "root",
