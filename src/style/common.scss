@@ -94,10 +94,21 @@ h6 {
 .flex {
     display: flex;
 }
+.flex-wrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
 .flex-center {
     display: flex;
     justify-content: center;
+}
+.flex-center-wrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
 }
 .flex-end{
     display: flex;
@@ -108,7 +119,11 @@ h6 {
     display: flex;
     justify-content: space-between;
 }
-
+.flex-between-wrap{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .content-box {
     width: 1200px;
     margin: 0 auto;

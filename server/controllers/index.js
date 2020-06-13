@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-07 00:44:23
  * @LastEditors: jun
- * @LastEditTime: 2020-06-14 00:51:59
+ * @LastEditTime: 2020-06-14 01:23:06
  * @FilePath: \mall\server\controllers\index.js
  * @Description: controller
  */
@@ -21,11 +21,7 @@ let json = require("../until/json");
 router.post('/product', (req, res, next) => {
   const sql = `select * from product`;
   db.query(sql, [], (err, result, fileds) => {
-    // json(res, result, err, "add")
-    res.json({
-      data: result,
-      message: '获取成功'
-    })
+    json(res, result, err, "getList")
   })
 })
 

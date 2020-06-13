@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-08 00:36:47
  * @LastEditors: jun
- * @LastEditTime: 2020-06-14 01:17:46
+ * @LastEditTime: 2020-06-14 02:08:32
  * @FilePath: \mall\src\views\homePage\homePage.vue
  * @Description: 
 --> 
@@ -56,15 +56,15 @@
         <div class="side">
           <img :src="sideImg" alt />
         </div>
-        <div class="page">
+        <div class="page flex-between-wrap">
           <div class="item" v-for="(item,i) in productArr" :key="i" @click="productDetail(item.productId)">
             <div class="top-txt" v-if="item.isNew==1">新品</div>
             <div class="cen-img">
-              <img :src="item.imgUrl" alt />
+              <img v-lazy="item.imgUrl" alt />
             </div>
-            <div class="describe">{{item.describe}}</div>
-            <div class="detail">{{item.detail}}</div>
-            <div class="price">{{item.price}}元</div>
+            <div class="describe">{{item.productName}}</div>
+            <div class="detail">{{item.description}}</div>
+            <div class="price">{{item.originalPrice}}元</div>
           </div>
         </div>
       </div>
@@ -72,15 +72,15 @@
         <img src="@/assets/img/tv.jpg" alt />
       </div>
       <div class="common-title">家电</div>
-      <div class="electric">
-        <div class="item" v-for="(item,i) in electric" :key="i">
+      <div class="electric flex-between-wrap">
+        <div class="item" v-for="(item,i) in electricList" :key="i">
           <div class="top-txt" v-if="item.isNew==1">新品</div>
           <div class="cen-img">
-            <img :src="item.img" alt />
+            <img v-lazy="item.imgUrl" alt />
           </div>
           <div class="name">{{item.productName}}</div>
-          <div class="detail">{{item.productDescription}}</div>
-          <div class="price">{{item.productPrice}}元</div>
+          <div class="detail">{{item.description}}</div>
+          <div class="price">{{item.originalPrice}}元</div>
         </div>
       </div>
     </div>
@@ -159,115 +159,9 @@ export default {
         }
       ],
 
-      productArr: [{
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        },
-        {
-          txt: "新品",
-          imgUrl: 'https://picsum.photos/160/160',
-          describe: "小米9 8GB+128GB",
-          detail: "好看又能打",
-          price: "2999"
-        }
-      ],
+      productArr: [],
       sideImg: require("@/assets/img/xm9.jpg"),
-      electric: [{
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        },
-        {
-          img: require("@/assets/img/xyj.jpg"),
-          productName: "米家互联网洗烘一体机10kg",
-          productPrice: 2499
-        }
-      ]
+      electricList: []
     }
   },
   mounted() {
@@ -276,7 +170,17 @@ export default {
   methods: {
     init() {
       this.axios.post('/api/product/product').then(res => {
-
+        if (res.data.status === 1) {
+          // this.productArr = res.data.data;
+          let data = res.data.data;
+          data.forEach(item => {
+            if (item.productType === 'phone') {
+              this.productArr.push(item);
+            } else if (item.productType === 'appliances') {
+              this.electricList.push(item);
+            }
+          })
+        }
       })
     }
   }
@@ -408,15 +312,13 @@ export default {
   }
 
   .page {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 15px;
-
     .item {
+      width: calc(100% / 4 - 10px);
+      margin-bottom: 15px;
       cursor: pointer;
       text-align: center;
       background-color: #fff;
+      position: relative;
       transition: all 0.2s linear;
 
       &:hover {
@@ -425,6 +327,9 @@ export default {
       }
 
       .top-txt {
+        position: absolute;
+        left: 0;
+        right: 0;
         width: 60px;
         height: 25px;
         line-height: 25px;
@@ -449,6 +354,7 @@ export default {
 
       .detail {
         color: #b0b0b0;
+        font-size: 12px;
         line-height: 30px;
       }
 
@@ -460,15 +366,14 @@ export default {
 }
 
 .electric {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 20px;
-
   .item {
+    width: calc(100% / 5 - 10px);
     background-color: #fff;
+    margin-bottom: 15px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s linear;
+    position: relative;
 
     &:hover {
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -476,6 +381,9 @@ export default {
     }
 
     .top-txt {
+      position: absolute;
+      left: 0;
+      right: 0;
       width: 60px;
       height: 25px;
       line-height: 25px;
@@ -494,6 +402,17 @@ export default {
 
     .name {
       margin: 10px 0;
+    }
+
+    .detail {
+      color: #b0b0b0;
+      padding: 0 10px;
+      font-size: 12px;
+      line-height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: normal;
+      white-space: nowrap;
     }
 
     .price {
