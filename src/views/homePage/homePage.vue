@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-08 00:36:47
  * @LastEditors: jun
- * @LastEditTime: 2020-06-14 02:08:32
+ * @LastEditTime: 2020-06-15 00:28:56
  * @FilePath: \mall\src\views\homePage\homePage.vue
  * @Description: 
 --> 
@@ -72,7 +72,7 @@
         <img src="@/assets/img/tv.jpg" alt />
       </div>
       <div class="common-title">家电</div>
-      <div class="electric flex-between-wrap">
+      <div class="electric common-wrap flex-between-wrap">
         <div class="item" v-for="(item,i) in electricList" :key="i">
           <div class="top-txt" v-if="item.isNew==1">新品</div>
           <div class="cen-img">
@@ -80,7 +80,47 @@
           </div>
           <div class="name">{{item.productName}}</div>
           <div class="detail">{{item.description}}</div>
-          <div class="price">{{item.originalPrice}}元</div>
+          <div class="price"><span class="present-price">{{item.presentPrice}}元</span><span class="original-price" v-if="item.originalPrice!==null">{{item.originalPrice}}元</span></div>
+        </div>
+      </div>
+      <div class="smart">
+        <div class="common-title">
+          <div class="name">智能</div>
+          <div class="more">
+            查看全部
+            <i class="el-icon-arrow-right"></i>
+          </div>
+        </div>
+        <div class="smart-lsit common-wrap flex-between-wrap">
+          <div class="item" v-for="item in smartList" :key="item.id">
+            <div class="top-txt" v-if="item.isNew==1">新品</div>
+            <div class="cen-img">
+              <img v-lazy="item.imgUrl" alt />
+            </div>
+            <div class="name">{{item.productName}}</div>
+            <div class="detail">{{item.description}}</div>
+            <div class="price"><span class="present-price">{{item.presentPrice}}元</span><span class="original-price" v-if="item.originalPrice!==null">{{item.originalPrice}}元</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="accessories">
+        <div class="common-title">
+          <div class="name">配件</div>
+          <div class="more">
+            查看全部
+            <i class="el-icon-arrow-right"></i>
+          </div>
+        </div>
+        <div class="accessories-list common-wrap flex-between-wrap">
+          <div class="item" v-for="item in accessoriesList" :key="item.id">
+            <div class="top-txt" v-if="item.isNew==1">新品</div>
+            <div class="cen-img">
+              <img v-lazy="item.imgUrl" alt />
+            </div>
+            <div class="name">{{item.productName}}</div>
+            <div class="detail">{{item.description}}</div>
+            <div class="price"><span class="present-price">{{item.presentPrice}}元</span><span class="original-price" v-if="item.originalPrice!==null">{{item.originalPrice}}元</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -161,7 +201,9 @@ export default {
 
       productArr: [],
       sideImg: require("@/assets/img/xm9.jpg"),
-      electricList: []
+      electricList: [],
+      smartList: [],
+      accessoriesList: []
     }
   },
   mounted() {
@@ -178,6 +220,10 @@ export default {
               this.productArr.push(item);
             } else if (item.productType === 'appliances') {
               this.electricList.push(item);
+            } else if (item.productType === 'smart') {
+              this.smartList.push(item);
+            } else if(item.productType === 'accessories'){
+              this.accessoriesList.push(item);
             }
           })
         }
@@ -235,13 +281,22 @@ export default {
         color: #757575;
         padding-top: 18px;
         font-size: 14px;
+        cursor: pointer;
+        opacity: .7;
+
+        &:hover {
+          opacity: 1;
+        }
 
         img {
-          width: 22px;
-          height: 22px;
+          width: 24px;
+          height: 24px;
+          margin: 0 auto 4px;
         }
 
         .txt {
+          color: #fff;
+          font-size: 12px;
           padding-top: 5px;
         }
       }
@@ -365,7 +420,7 @@ export default {
   }
 }
 
-.electric {
+.common-wrap {
   .item {
     width: calc(100% / 5 - 10px);
     background-color: #fff;
@@ -416,8 +471,17 @@ export default {
     }
 
     .price {
-      color: #ff6700;
       margin: 15px 0;
+    }
+
+    .present-price {
+      color: #ff6700;
+    }
+
+    .original-price {
+      color: #ccc;
+      margin-left: 10px;
+      text-decoration: line-through;
     }
   }
 }
