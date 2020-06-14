@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-08 00:36:47
  * @LastEditors: jun
- * @LastEditTime: 2020-06-15 00:28:56
+ * @LastEditTime: 2020-06-15 01:28:52
  * @FilePath: \mall\src\views\homePage\homePage.vue
  * @Description: 
 --> 
@@ -21,8 +21,10 @@
       </div>
       <div class="main">
         <el-carousel trigger="click" height="420px">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <h3 class="small">{{ item }}</h3>
+          <el-carousel-item v-for="item in bannerList" :key="item.bannerId">
+            <!-- <h3 class="small">{{ item }}</h3>
+             -->
+             <img v-lazy="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -163,6 +165,7 @@ export default {
           name: '手机 电话卡'
         }
       ],
+      bannerList: [],
       subList: [{
           imgUrl: 'https://picsum.photos/170'
         },
@@ -211,6 +214,11 @@ export default {
   },
   methods: {
     init() {
+      this.axios.post('/api/product/menuList').then(res=>{
+        if(res.data.status === 1){
+          this.bannerList = res.data.banner;
+        }
+      })
       this.axios.post('/api/product/product').then(res => {
         if (res.data.status === 1) {
           // this.productArr = res.data.data;
@@ -258,6 +266,10 @@ export default {
 
   .main {
     width: calc(100% - 230px);
+    img{
+      width: 100%;
+      height: 420px;
+    }
   }
 }
 

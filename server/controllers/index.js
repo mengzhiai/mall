@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-07 00:44:23
  * @LastEditors: jun
- * @LastEditTime: 2020-06-14 01:23:06
+ * @LastEditTime: 2020-06-15 01:22:06
  * @FilePath: \mall\server\controllers\index.js
  * @Description: controller
  */
@@ -18,11 +18,24 @@ let json = require("../until/json");
     json(res, result, err, "add");
   });
 }); */
+
+router.post('/menuList', (req, res, next) => {
+  const sql = 'select * from banner';
+  db.query(sql, [], (err, result, fileds) => {
+    // json(res, result, err, "getList")
+    res.json({
+      banner: result,
+      status: 1
+    })
+  })
+})
+
 router.post('/product', (req, res, next) => {
   const sql = `select * from product`;
   db.query(sql, [], (err, result, fileds) => {
     json(res, result, err, "getList")
   })
 })
+
 
 module.exports = router;
