@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-07 16:57:10
  * @LastEditors: jun
- * @LastEditTime: 2020-06-09 15:51:44
+ * @LastEditTime: 2020-10-19 23:51:46
  * @FilePath: \mall\src\views\login\login.vue
  * @Description: 
 --> 

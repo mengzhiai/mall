@@ -2,7 +2,7 @@
  * @Author: jun
  * @Date: 2020-06-08 00:36:47
  * @LastEditors: jun
- * @LastEditTime: 2020-06-15 01:28:52
+ * @LastEditTime: 2020-10-19 23:50:02
  * @FilePath: \mall\src\views\homePage\homePage.vue
  * @Description: 
 --> 
@@ -125,6 +125,7 @@
           </div>
         </div>
       </div>
+      <div v-for="item in valList">{{item.name}}</div>
     </div>
   </div>
 </div>
@@ -207,6 +208,12 @@ export default {
       electricList: [],
       smartList: [],
       accessoriesList: []
+    }
+  },
+  computed: {
+    valList(){
+      console.log(this.$store.state.dataList);
+      return this.$store.state.dataList;
     }
   },
   mounted() {
